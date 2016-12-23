@@ -4,43 +4,57 @@
 using namespace std;
 
 int inputGrade = 0;
-string outputGrade;
+bool perfectGrade = false;
+bool error = false;
+string letterGrade = "Z";
 
 void setGrade()
 {
     if(inputGrade < 60)
-    {
-        outputGrade = 'F';
-    }
-    else if (input Grade < 70)
-    {
-        outputGrade = 'D';
-    }
-    else if (input Grade < 80)
-    {
-        outputGrade = 'C';
-    }
-    else if (input Grade < 90)
-    {
-        outputGrade = 'B';
-    }
-    else if (input Grade < 100)
-    {
-        outputGrade = 'A';
-    }
-    else if (input Grade == 100)
-    {
-        outputGrade = 'Perfect Score';
-    }
+        letterGrade = "F";
+
+    else if(inputGrade < 70)
+        letterGrade = "D";
+
+    else if(inputGrade < 80)
+        letterGrade = "C";
+
+    else if(inputGrade < 90)
+        letterGrade = "B";
+
+    else if(inputGrade < 100)
+        letterGrade = "A";
+
+    else if(inputGrade == 100)
+        perfectGrade = true;
+
     else
-    {
-        outputGrade = 'Error: Cannot Recognize Your Input';
-    }
+        error = true;
+}
+
+void isPerfectGrade()
+{
+    if(perfectGrade)
+        cout << "You got a perfect score!" << endl;
+    else
+        cout << "Your Grade is: " << letterGrade << endl;
+}
+
+void errorTester()
+{
+    if(error)
+        cout << "ERROR: Cannot interpret the input" << endl;
+    else
+        isPerfectGrade();
 }
 
 int main()
 {
+  cout << "Input Your Grade!" << endl;
+
   cin >> inputGrade;
   setGrade();
-  cout << "Your Grade is:" << outputGrade;
+  errorTester();
+
+  return 0;
 }
